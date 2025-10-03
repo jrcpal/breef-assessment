@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --beige: #f9f7f3;
+  --primary-black: #120902;
+  --error: #ff551f;
+
+  --orange500: #d96e34;
+  --orange600: #cc5c1f;
+  --orange200: #faebe4;
+
+  --grey100: #f1f0ec;
+  --grey200: #e9e8e1;
+  --greyt40: #2f2f2f66;
+  --greyt50: #00000080;
+  --grey600: #68737d;
+  --grey800: #2f3941;
+}
+
+html,
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--beige);
+}
