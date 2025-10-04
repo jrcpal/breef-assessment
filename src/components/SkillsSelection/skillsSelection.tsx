@@ -2,29 +2,8 @@ import { useState } from "react";
 import skillsData from "../../data/skillsData.json";
 import SearchableDropdown from "../SearchableDropdown/searchableDropdown";
 import Chip from "../Chips/chip";
-import styled from "styled-components";
+import { SkillsRow, SkillsCta } from "./skillsSelection.styled";
 
-export const SkillsRow = styled.div`
-  margin-bottom: 1.25rem;
-  margin-top: 1.25rem;
-  &:first-child {
-    margin-top: 0;
-  }
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-export const SkillsCta = styled.button`
-  border: 1px solid var(--primary-black);
-  background-color: var(--orange500);
-  padding: 8px 24px;
-  border-radius: 2px;
-  color: var(--grey100);
-  transition: background-color 200ms ease, color 200ms ease,
-    border-color 200ms ease;
-  letter-spacing: 0.05em;
-`
 
 type Option = { value: string };
 
@@ -40,13 +19,26 @@ export default function SkillsSelection() {
     );
   };
 
+  const getSuggestions = (): string[] => {
+    try {
+      const allSkills: string[] = Array.isArray(skillsData)
+        ? (skillsData as unknown as string[])
+        : [];
+
+      // filter out already selected skills
+      return allSkills.filter((s) => !selectedSkills.includes(s));
+    } catch (err) {
+      console.error("SkillsSelection: error retrieving suggestions", err);
+      return [];
+    }
+  };
+
   return (
     <>
       <SkillsRow className="skills-header">
-        <p>Agency Skills</p>
+        <p className="text-lg font-[500]">Agency Skills</p>
         <p>What type of agency are you looking for? Select one or multiple.</p>
-      </SkillsRow>
-      <div className="skills-dropdown">
+              <div className="skills-dropdown">
         <div className="skills-dropdown__title"></div>
         <SearchableDropdown
           options={[]}
@@ -55,6 +47,10 @@ export default function SkillsSelection() {
           onSelect={handleSelect}
         />
       </div>
+      </SkillsRow>
+
+
+
       <SkillsRow className="skills-selected">
         <p aria-label="Selected skills">Selected</p>
         <div className="selected-chips">
@@ -73,9 +69,25 @@ export default function SkillsSelection() {
           )}
         </div>
       </SkillsRow>
+
       <SkillsRow className="skills-suggested">
         <p aria-label="Suggested skills">Suggested</p>
+        <div className="suggested-chips flex flex-wrap gap-2 mt-2">
+          {getSuggestions().length === 0 ? (
+            <p className="text-sm text-[var(--grey600)]">No suggestions</p>
+          ) : (
+            getSuggestions().map((skill) => (
+              <Chip
+                key={skill}
+                label={skill}
+                variant="suggested"
+                onClick={() => handleSelect({ value: skill })}
+              />
+            ))
+          )}
+        </div>
       </SkillsRow>
+
       <SkillsRow>
         <div className="flex justify-end">
           <SkillsCta className="skills-cta">NEXT</SkillsCta>

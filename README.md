@@ -32,13 +32,11 @@ Approach
 - Create a Skills Selection component to display and capture user's input. 
 - Build a custom reusable multi-select and searchable dropdown to be used within a Skills Selection component.
 - Display selected skills 
-- Expand upon the data with mock categories and popularity in order to create an algorithm for suggested skills based on selected skills. 
+- Display suggested skills to cover all skills that haven't been selected yet.
 
 Assumptions
 
-- That database would be able to handle expanded details (category, popularity)
 - That skills list has a relatively small number of options.
-- That not all skill options should be available for suggestions. 
 - That no server-side rendering or authentication is needed for skill options 
 
 How I'd expand this application
@@ -48,3 +46,4 @@ How I'd expand this application
 - Create a broader component test in addition to the unit tests
 - Add fuzzy matching to the search input 
 - Add select all / clear all buttons for selected/suggested skills. 
+- Expand on the data and introduce popularity and categories to refine suggestions
