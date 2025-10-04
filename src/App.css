@@ -67,10 +67,14 @@
 
 .project-title {
   border-bottom: 1px solid var(--grey200);
-  padding: 24px 0;
+  padding: 36px 0;
 
   h1 {
     font-size: 36px;
+  }
+
+  p {
+    color: var(--grey600);
   }
 }
 
@@ -99,5 +103,39 @@
   /* hide the fixed sidebar to free horizontal space on mobile */
   .sidebar {
     display: none;
+  }
+
+  .site-header {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+  .app-root {
+    padding-top: 64px; /* match reduced header */
+  }
+
+  .page-body {
+    display: block;
+  }
+
+  /* make main content full width and remove left offset */
+  .project-container {
+    max-width: 100%;
+    min-width: auto;
+    padding: 0 1rem;
+    margin-left: 0;
+  }
+
+  .skills-container {
+    padding: 16px 0;
+  }
+
+  .site-header__logo {
+    font-size: 20px;
+  }
+
+  .site-header__cta {
+    padding: 6px 10px;
+    font-size: 0.875rem;
   }
 }

@@ -11,12 +11,15 @@ export const SkillsRow = styled.div`
   }
 `;
 
+export const SkillsRowText = styled.p`
+  color: var(--grey600);
+`;
 
 export const SkillsCta = styled.button`
   border: 1px solid var(--primary-black);
   background-color: var(--orange500);
   margin: 50px 0px;
-  padding: 8px 24px;
+  padding: 8px 36px;
   border-radius: 2px;
   color: var(--grey100);
   transition: background-color 200ms ease, color 200ms ease,
