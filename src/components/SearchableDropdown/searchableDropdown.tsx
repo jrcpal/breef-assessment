@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search, ChevronDown } from "lucide-react";
 import skillsData from "../../data/skillsData.json";
 
@@ -7,7 +7,7 @@ type Option = {
 };
 
 type SearchableDropdownProps = {
-  //onSelect: (option: Option) => void;
+  onSelect: (option: Option) => void;
   options: Option[];
   selectedValues?: string[];
   placeholder?: string;
@@ -15,7 +15,7 @@ type SearchableDropdownProps = {
 };
 
 export default function SearchableDropdown({
-  //onSelect,
+  onSelect,
   options,
   selectedValues = [],
   placeholder = "Select...",
@@ -23,6 +23,7 @@ export default function SearchableDropdown({
 }: SearchableDropdownProps) {
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState<string[]>(selectedValues);
   console.log(options);
   console.log(selectedValues);
 
@@ -37,8 +38,30 @@ export default function SearchableDropdown({
   const filtered = allOptions.filter((o) =>
     o.value.toLowerCase().includes(search.toLowerCase())
   );
+
+  const toggleSelection = (value: string) => {
+    setSelected((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
+    if (onSelect) onSelect({ value });
+  };
+
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (!rootRef.current) return;
+      if (e.target instanceof Node && !rootRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="dropdown-container relative">
+    <div ref={rootRef} className="dropdown-container relative">
       <div className="dropdown-input w-full flex items-center border border-[var(--grey200)] rounded-sm bg-[var(--grey100)] px-3 py-3 hover:border-[var(--grey200)] focus-within:border-[var(--grey200)] transition-colors">
         <Search
           size={16}
@@ -89,7 +112,6 @@ export default function SearchableDropdown({
             <li
               className="px-3 py-2 text-center text-sm text-[var(--orange500)]"
               role="status"
-              aria-live="polite"
             >
               Loading...
             </li>
@@ -98,10 +120,13 @@ export default function SearchableDropdown({
               <li
                 key={o.value}
                 role="option"
-                className="px-3 py-2 text-sm text-[var(--grey800)] hover:bg-[var(--grey100)] cursor-pointer"
+                className={`px-3 py-2 text-sm text-[var(--grey800)] hover:bg-[var(--grey200)] cursor-pointer ${
+                  selected.includes(o.value)
+                    ? "font-medium bg-[var(--grey200)] text-[var(--orange500)] "
+                    : ""
+                }`}
                 onClick={() => {
-                  setSearch(o.value);
-                  setIsOpen(false);
+                  toggleSelection(o.value);
                 }}
               >
                 {o.value}

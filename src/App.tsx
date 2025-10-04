@@ -27,6 +27,14 @@ function App() {
           </div>
         </div>
       </div>
+      <div className="site-footer">
+        <button
+          className="site-footer__cta "
+          onClick={() => alert("Aren't we all a work in progress?")}
+        >
+          NEXT
+        </button>
+      </div>
     </div>
   );
 }
