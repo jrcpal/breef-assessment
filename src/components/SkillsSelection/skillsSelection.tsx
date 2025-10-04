@@ -73,7 +73,7 @@ export default function SkillsSelection() {
 
       <SkillsRow className="skills-suggested">
         <SkillsRowText aria-label="Suggested skills">Suggested</SkillsRowText>
-        <div className="suggested-chips flex flex-wrap gap-2 mt-2">
+        <div className="suggested-chips flex flex-wrap ">
           {getSuggestions().length === 0 ? (
             <p className="text-sm text-[var(--greyt40)]">
               No remaining suggestions

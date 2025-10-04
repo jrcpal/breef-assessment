@@ -10,7 +10,8 @@ const base = css`
   border-radius: 9999px;
   padding: 0.25rem 0.75rem;
   font-size: 0.875rem;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Selected = styled.span`
