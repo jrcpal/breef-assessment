@@ -39,8 +39,14 @@ export default function SearchableDropdown({
   );
 
   const toggleSelection = (value: string) => {
+    try {
+      if (!onSelect) throw new Error("onSelect handler not provided");
+      onSelect({ value });
+    } catch (err) {
+      console.error("SearchableDropdown: select failed", err);
+    }
     // Delegate toggle to parent via onSelect; parent is the source of truth
-    if (onSelect) onSelect({ value });
+
   };
 
   const rootRef = useRef<HTMLDivElement | null>(null);

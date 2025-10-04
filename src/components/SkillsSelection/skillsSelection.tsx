@@ -4,7 +4,6 @@ import SearchableDropdown from "../SearchableDropdown/searchableDropdown";
 import Chip from "../Chips/chip";
 import { SkillsRow, SkillsCta, SkillsRowText } from "./skillsSelection.styled";
 
-
 type Option = { value: string };
 
 export default function SkillsSelection() {
@@ -36,20 +35,22 @@ export default function SkillsSelection() {
   return (
     <>
       <SkillsRow className="skills-header">
-        <p className="text-lg font-[500] text-[var(--grey800)]">Agency Skills</p>
-        <SkillsRowText>What type of agency are you looking for? Select one or multiple.</SkillsRowText>
-              <div className="skills-dropdown">
-        <div className="skills-dropdown__title"></div>
-        <SearchableDropdown
-          options={[]}
-          selectedValues={selectedSkills}
-          placeholder="Search"
-          onSelect={handleSelect}
-        />
-      </div>
+        <p className="text-lg font-[500] text-[var(--grey800)]">
+          Agency Skills
+        </p>
+        <SkillsRowText>
+          What type of agency are you looking for? Select one or multiple.
+        </SkillsRowText>
+        <div className="skills-dropdown">
+          <div className="skills-dropdown__title"></div>
+          <SearchableDropdown
+            options={[]}
+            selectedValues={selectedSkills}
+            placeholder="Search"
+            onSelect={handleSelect}
+          />
+        </div>
       </SkillsRow>
-
-
 
       <SkillsRow className="skills-selected">
         <SkillsRowText aria-label="Selected skills">Selected</SkillsRowText>
@@ -74,7 +75,9 @@ export default function SkillsSelection() {
         <SkillsRowText aria-label="Suggested skills">Suggested</SkillsRowText>
         <div className="suggested-chips flex flex-wrap gap-2 mt-2">
           {getSuggestions().length === 0 ? (
-            <p className="text-sm text-[var(--greyt40)]">No remaining suggestions</p>
+            <p className="text-sm text-[var(--greyt40)]">
+              No remaining suggestions
+            </p>
           ) : (
             getSuggestions().map((skill) => (
               <Chip
@@ -90,7 +93,12 @@ export default function SkillsSelection() {
 
       <SkillsRow>
         <div className="flex justify-end">
-          <SkillsCta className="skills-cta"onClick={() => alert("Aren't we all a work in progress?")}>NEXT</SkillsCta>
+          <SkillsCta
+            className="skills-cta"
+            onClick={() => alert("Aren't we all a work in progress?")}
+          >
+            NEXT
+          </SkillsCta>
         </div>
       </SkillsRow>
     </>

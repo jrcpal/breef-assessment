@@ -43,7 +43,6 @@ How I'd expand this application
 
 - I'd like to improve the layout so that expanding the options list does not visually block the Selected and Suggested skills. 
 - Scope out gathering the information from a real, or more fleshed out mock api
-- Create a broader component test in addition to the unit tests
 - Add fuzzy matching to the search input 
 - Add select all / clear all buttons for selected/suggested skills. 
 - Expand on the data and introduce popularity and categories to refine suggestions
