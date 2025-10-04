@@ -60,6 +60,7 @@
 
 .project-container {
   max-width: 800px;
+  min-width: 800px;
   padding: 0 4rem;
   margin-left: 220px;
 }

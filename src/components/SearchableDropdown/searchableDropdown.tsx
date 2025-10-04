@@ -23,7 +23,6 @@ export default function SearchableDropdown({
 }: SearchableDropdownProps) {
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<string[]>(selectedValues);
   console.log(options);
   console.log(selectedValues);
 
@@ -40,9 +39,7 @@ export default function SearchableDropdown({
   );
 
   const toggleSelection = (value: string) => {
-    setSelected((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
-    );
+    // Delegate toggle to parent via onSelect; parent is the source of truth
     if (onSelect) onSelect({ value });
   };
 
@@ -62,7 +59,7 @@ export default function SearchableDropdown({
 
   return (
     <div ref={rootRef} className="dropdown-container relative">
-      <div className="dropdown-input w-full flex items-center border border-[var(--grey200)] rounded-sm bg-[var(--grey100)] px-3 py-3 hover:border-[var(--grey200)] focus-within:border-[var(--grey200)] transition-colors">
+      <div className="dropdown-input w-full flex items-center border border-[var(--grey200)] rounded-sm bg-[var(--primary-white)] px-3 py-3 hover:border-[var(--grey200)] focus-within:border-[var(--grey200)] transition-colors">
         <Search
           size={16}
           className="lucide mr-2 flex-shrink-0"
@@ -121,7 +118,7 @@ export default function SearchableDropdown({
                 key={o.value}
                 role="option"
                 className={`px-3 py-2 text-sm text-[var(--grey800)] hover:bg-[var(--grey200)] cursor-pointer ${
-                  selected.includes(o.value)
+                  selectedValues.includes(o.value)
                     ? "font-medium bg-[var(--grey200)] text-[var(--orange500)] "
                     : ""
                 }`}
