@@ -1,13 +1,16 @@
-import { useState } from "react";
 import skillsData from "../../data/skillsData.json";
 import SearchableDropdown from "../SearchableDropdown/searchableDropdown";
 import Chip from "../Chips/chip";
-import { SkillsRow, SkillsCta, SkillsRowText } from "./skillsSelection.styled";
+import { SkillsRow, SkillsRowText } from "./skillsSelection.styled";
 
 type Option = { value: string };
 
-export default function SkillsSelection() {
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+interface SkillsSelectionProps {
+  selectedSkills: string[];
+  setSelectedSkills: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+export default function SkillsSelection({ selectedSkills, setSelectedSkills }: SkillsSelectionProps) {
   console.log(skillsData);
 
   const handleSelect = (opt: Option) => {
@@ -88,17 +91,6 @@ export default function SkillsSelection() {
               />
             ))
           )}
-        </div>
-      </SkillsRow>
-
-      <SkillsRow>
-        <div className="flex justify-end">
-          <SkillsCta
-            className="skills-cta"
-            onClick={() => alert("Aren't we all a work in progress?")}
-          >
-            NEXT
-          </SkillsCta>
         </div>
       </SkillsRow>
     </>

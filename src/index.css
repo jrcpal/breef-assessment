@@ -6,9 +6,11 @@
   --primary-white: #ffffff;
   --error: #ff551f;
 
+  --orange100: #fbf0eb;
+  --orange400: #e1895f;
   --orange500: #d96e34;
   --orange600: #cc5c1f;
-  --orange200: #faebe4;
+
 
   --grey100: #f1f0ec;
   --grey200: #e9e8e1;
@@ -24,5 +26,4 @@ body {
   margin: 0;
   min-height: 100vh;
   background-color: var(--beige);
-
 }

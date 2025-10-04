@@ -23,8 +23,6 @@ export default function SearchableDropdown({
 }: SearchableDropdownProps) {
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  console.log(options);
-  console.log(selectedValues);
 
   // use provided options if any, otherwise fall back to skillsData
   const allOptions: Option[] =
@@ -45,8 +43,6 @@ export default function SearchableDropdown({
     } catch (err) {
       console.error("SearchableDropdown: select failed", err);
     }
-    // Delegate toggle to parent via onSelect; parent is the source of truth
-
   };
 
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -65,7 +61,7 @@ export default function SearchableDropdown({
 
   return (
     <div ref={rootRef} className="dropdown-container relative">
-      <div className="dropdown-input w-full flex items-center border border-[var(--grey200)] rounded-sm bg-[var(--primary-white)] px-3 py-3 hover:border-[var(--grey200)] focus-within:border-[var(--grey200)] transition-colors">
+      <div className="dropdown-input w-full flex items-center border border-[var(--grey200)] rounded-sm bg-[var(--primary-white)] px-3 py-3 hover:border-[var(--orange400)] hover:bg-[var(--orange100)] focus-within:border-[var(--grey200)] transition-colors">
         <Search
           size={16}
           className="lucide mr-2 flex-shrink-0"

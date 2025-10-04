@@ -1,25 +1,30 @@
 .app-root {
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
-  justify-content: left;
+  flex-direction: column;
   /* keep content below the fixed header (match header height) */
-  padding-top: 120px;
+  padding-top: 100px;
   box-sizing: border-box;
 }
 
 .site-header {
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 120px;
+  height: 10vh;
+  min-height: 56px;
+  max-height: 88px;
   width: 100%;
   border-bottom: 1px solid var(--grey200);
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 8px 24px;
+  inset: 0% 0% auto;
+  z-index: 91;
+  background: var(--beige);
+  backdrop-filter: blur(25px);
 }
 
 .site-header__logo {
@@ -52,41 +57,28 @@
   border-right: 1px solid var(--grey200);
   position: fixed;
   left: 0;
-  top: 120px;
-  height: calc(100vh - 120px);
+  top: 100px;
+  height: calc(100vh - 100px);
   box-sizing: border-box;
   background: var(--beige, transparent);
+  z-index: 100;
 }
 
-.project-container {
-  max-width: 800px;
-  min-width: 800px;
-  padding: 0 4rem;
-  margin-left: 220px;
-}
-
-.project-title {
-  border-bottom: 1px solid var(--grey200);
-  padding: 36px 0;
-
-  h1 {
-    font-size: 36px;
-  }
-
-  p {
-    color: var(--grey600);
-  }
-}
-
-.skills-container {
+.onboard-container {
   padding: 24px 0;
 }
 
+.page-body__cta {
+  display: flex;
+  justify-content: flex-end;
+  margin: 36px 0;
+}
 
 @media (max-width: 768px) {
   /* hide the fixed sidebar to free horizontal space on mobile */
   .sidebar {
     display: none;
+    z-index: 100;
   }
 
   .site-header {
@@ -103,14 +95,7 @@
   }
 
   /* make main content full width and remove left offset */
-  .project-container {
-    max-width: 100%;
-    min-width: auto;
-    padding: 0 1rem;
-    margin-left: 0;
-  }
-
-  .skills-container {
+  .onboard-container {
     padding: 16px 0;
   }
 

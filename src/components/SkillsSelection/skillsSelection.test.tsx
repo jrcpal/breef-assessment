@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import SkillsSelection from "./skillsSelection";
+import OnboardPanel from "../OnboardPanel/onboardPanel";
 
 test("clicking a suggested chip moves it to Selected and removes it from Suggested", () => {
-  render(<SkillsSelection />);
+  render(<OnboardPanel />);
 
-  // the test assumes skillsData contains "Digital Marketing" (matches your data)
+  // the test assumes skillsData contains "Digital Marketing"
   const addButton = screen.getByRole("button", {
     name: /Add Digital Marketing/i,
   });
